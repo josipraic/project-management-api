@@ -20,6 +20,9 @@ public class Project {
     private Long id;
 
     @Column(nullable = false, length = 100)
+    private String name;
+
+    @Column(nullable = false, length = 100)
     private String description;
 
     @Enumerated(EnumType.STRING)
