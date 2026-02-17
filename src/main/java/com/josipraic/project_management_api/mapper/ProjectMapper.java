@@ -25,7 +25,7 @@ public class ProjectMapper {
         project.setStatus(request.status());
     }
 
-    public static ProjectResponse toResponese(Project project) {
+    public static ProjectResponse toResponse(Project project) {
         return new ProjectResponse(
                 project.getId(),
                 project.getName(),
