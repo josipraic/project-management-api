@@ -4,6 +4,8 @@ import com.josipraic.project_management_api.dto.ProjectCreateRequest;
 import com.josipraic.project_management_api.dto.ProjectResponse;
 import com.josipraic.project_management_api.dto.ProjectUpdateRequest;
 import com.josipraic.project_management_api.entity.Project;
+import com.josipraic.project_management_api.exception.ConflictException;
+import com.josipraic.project_management_api.exception.ResourceNotFoundException;
 import com.josipraic.project_management_api.mapper.ProjectMapper;
 import com.josipraic.project_management_api.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
@@ -46,7 +48,7 @@ public class ProjectService {
 
         if (!project.getName().equalsIgnoreCase(request.name())
                 && projectRepository.existsByNameIgnoreCase(request.name())) {
-            throw new IllegalArgumentException("Project with this name already exists");
+            throw new ResourceNotFoundException("Project not found");
         }
 
         ProjectMapper.updateEntity(project, request);
@@ -56,7 +58,7 @@ public class ProjectService {
 
     public void delete(Long id) {
         if(!projectRepository.existsById(id)) {
-            throw new IllegalArgumentException("Project not found");
+            throw new ResourceNotFoundException("Project not found");
         }
         projectRepository.deleteById(id);
     }
