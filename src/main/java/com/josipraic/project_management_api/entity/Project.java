@@ -37,6 +37,9 @@ public class Project {
     @Column(nullable = false)
     private Instant updatedAt;
 
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    private java.util.List<Task> tasks = new java.util.ArrayList<>();
+
     @PrePersist
     void prePersist() {
         if (status == null) {
