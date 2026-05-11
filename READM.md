@@ -1,0 +1,1 @@
+REST API for managing projects and tasks built with Spring Boot.
